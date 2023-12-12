@@ -1,7 +1,6 @@
 name: test_my_app
 
 on:
-  push:
   pull_request:
     branches:
       - master
@@ -21,6 +20,6 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v6
         with:
+          start: npm run start
           command: npm run test:e2e
-          start: npm run start-prod &&  && echo ${cult http://localhost:5000}
-          wait-on: http://localhost:5000
+          wait-on: http://localhost:8080
