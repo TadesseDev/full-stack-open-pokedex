@@ -1,0 +1,33 @@
+name: cypress_test
+
+on:
+  push:
+    branches:
+      - feature_branch
+  pull_request:
+    branches:
+      - feature_branch
+
+jobs:
+  cypress-e2e-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run-Cypress-tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start
+          command: npm run test:e2e
+
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - name: install_dependencies
+    #     run: npm install
+    #   # - name: Cypress run
+    #   - uses: cypress-io/github-action@v5
+    #     with:
+    #       start: npm run start
+    #       command: npm run test:e2e
+    #       # wait-on: http://localhost:8080
